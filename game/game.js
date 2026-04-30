@@ -41465,11 +41465,11 @@ var version = "v1.11.1";
                         (U.justDownInputTimer = 0)),
                       
                       U.dashing || (U.jumping
-                        ? U.playerY > low
+                        ? U.playerY > low + 1
                           ? ((U.playerY += 2 * df * ((-5 + low - U.playerY) / 6.6) * (w / 6.6)),
                             (U.playerY = B.clamp2(low, high, U.playerY)))
                           : (U.playerY = low)
-                        : U.playerY < high
+                        : U.playerY < high - 1
                         ? ((U.playerY += 2 * df * ((5 + high - U.playerY) / 6.6) * (w / 6.6)),
                           (U.playerY = B.clamp2(low, high, U.playerY)))
                         : (U.playerY = high)),
