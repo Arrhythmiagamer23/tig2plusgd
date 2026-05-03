@@ -42695,6 +42695,7 @@ var version = "v1.11.1";
             const skating = U.playerPowerups.some(
               (e) => e.item === "skateboard",
             );
+            const pastPlayerOnGroundY = U.playerOnGroundY;
             (U.justDownInputTimer > 0 &&
               (disableReleaseBuffer
                 ? ("up" == playerInput && (U.justDownInputTimer = 0),
@@ -43827,7 +43828,7 @@ var version = "v1.11.1";
                 const a = inViewLayout.blocks[t];
                 if (e(a)) {
                   const e = inViewLayoutState.blocks[t];
-                  (!e?.hitFrame || e?.hitFrame < U.frame - 60) &&
+                  (!e?.hitFrame || e?.hitFrame < U.frame) &&
                     !e.isGround &&
                     xa.updateLayoutStateField(
                       "blocks",
@@ -62137,8 +62138,18 @@ var version = "v1.11.1";
         };
         const gameplayOverlay = makeSprite({
             init: () => ({ boostersMenuOpen: false }),
-            loop({ props: e, getInputs: t }) {
-              !e.paused && t().keysJustPressed.Escape && e.onPause();
+            loop({ props: e, getInputs: t, device: a }) {
+              let keysPressed = t().keysJustPressed
+              keysPressed.Escape && (e.paused ? e.onResume() : e.onPause());
+              keysPressed.r && e.onReset && ((e.paused || e.onPause()), true) && a.alert.okCancel(
+                              localize(
+                                "Are you sure you want to return to the beginning?",
+                              ),
+                              (t) =>
+                                Am(this, void 0, void 0, function* () {
+                                  t && e.onReset();
+                                }),
+                            );
             },
             render({ props: e, state: t, device: a, getContext: i }) {
               const { settings: n } = i(Se);
