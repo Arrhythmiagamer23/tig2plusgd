@@ -41818,7 +41818,7 @@ var version = "v1.11.1";
                         runHistory[i].playerSpeedMultiplier,
                       playerScale: runHistory[i].playerScale,
                       playerGradY: runHistory[i].playerGradY,
-                      direciton: S.direction,
+                      direction: S.direction,
                     })
                   : a || 1 !== b.length || "spring" !== b[0].type
                     ? null
