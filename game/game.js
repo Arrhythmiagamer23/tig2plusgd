@@ -30539,6 +30539,8 @@ var version = "v1.11.1";
               `images/themes/${e.objects.spike}/spike.png`,
               `images/themes/${e.objects.switch}/switch-platform.png`,
               `images/themes/${e.objects.switch}/switch-button.png`,
+              "images/themes/world3/block-white.png",
+              "images/themes/world3/spike-white.png",
               "images/themes/classic/ground.png",
               "images/themes/infinite/ground.png",
               "images/themes/world2/block-small.png",
@@ -32316,7 +32318,7 @@ var version = "v1.11.1";
                   0,
                   false,
                   false,
-                )(e) && e.rotation > -45
+                )(e) && (e.rotation) > -45
                   ? (m = be.getObjectTopY(e, t.x, t.y) + t.height / 2)
                   : a && (y = true);
                 continue;
@@ -40792,6 +40794,10 @@ var version = "v1.11.1";
                   x: (pointer.x - d.x) / d.scale,
                   y: (pointer.y - d.y) / d.scale,
                 };
+              let newViewOffset = Object.assign({}, d);
+              (r.keysDown.a && (newViewOffset.x += (1 / d.scale) * 10));
+              (r.keysDown.d && (newViewOffset.x -= (1 / d.scale) * 10));
+              u({ viewOffset: newViewOffset });
               (r.keysJustPressed["="] &&
                 (r.keysDown.Control || r.keysDown.Meta) &&
                 u({ viewOffset: zoomIn(d) }),
