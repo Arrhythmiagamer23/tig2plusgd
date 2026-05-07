@@ -19934,6 +19934,8 @@ var version = "v1.11.1";
                       paused: e.paused,
                       rotation: e.playerRot,
                       df: e.df,
+                      scaleX: e.playerScale,
+                      scaleY: e.playerScale
                     },
                     (t) => {
                       ((t.paused = e.paused),
@@ -19949,6 +19951,8 @@ var version = "v1.11.1";
                       colour: e.trail.topColour,
                       bottomColour: e.trail.bottomColour,
                       paused: e.paused,
+                      scaleX: e.playerScale,
+                      scaleY: e.playerScale
                     },
                     (t) => {
                       ((t.justDestroyed = e.justDestroyed),
@@ -30535,6 +30539,8 @@ var version = "v1.11.1";
               `images/themes/${e.objects.spike}/spike.png`,
               `images/themes/${e.objects.switch}/switch-platform.png`,
               `images/themes/${e.objects.switch}/switch-button.png`,
+              "images/themes/world3/block-white.png",
+              "images/themes/world3/spike-white.png",
               "images/themes/classic/ground.png",
               "images/themes/infinite/ground.png",
               "images/themes/world2/block-small.png",
@@ -32312,7 +32318,7 @@ var version = "v1.11.1";
                   0,
                   false,
                   false,
-                )(e) && e.rotation > -45
+                )(e) && (e.rotation) > -45
                   ? (m = be.getObjectTopY(e, t.x, t.y) + t.height / 2)
                   : a && (y = true);
                 continue;
@@ -40787,6 +40793,10 @@ var version = "v1.11.1";
                   x: (pointer.x - d.x) / d.scale,
                   y: (pointer.y - d.y) / d.scale,
                 };
+              let newViewOffset = Object.assign({}, d);
+              (r.keysDown.a && (newViewOffset.x += (1 / d.scale) * 10));
+              (r.keysDown.d && (newViewOffset.x -= (1 / d.scale) * 10));
+              u({ viewOffset: newViewOffset });
               (r.keysJustPressed["="] &&
                 (r.keysDown.Control || r.keysDown.Meta) &&
                 u({ viewOffset: zoomIn(d) }),
@@ -41866,7 +41876,7 @@ var version = "v1.11.1";
                         runHistory[i].playerSpeedMultiplier,
                       playerScale: runHistory[i].playerScale,
                       playerGradY: runHistory[i].playerGradY,
-                      direciton: S.direction,
+                      direction: S.direction,
                     })
                   : a || 1 !== b.length || "spring" !== b[0].type
                     ? null
@@ -44018,6 +44028,7 @@ var version = "v1.11.1";
                 );
                 if (e) {
                   ((U.playerGradY = e.playerGradY),
+                    (U.jumping = U.flyingAnchor === null ? U.jumping : false),
                     (U.isGravity = 0),
                     xa.updateLayoutStateField(
                       "enemies",
@@ -54015,7 +54026,7 @@ var version = "v1.11.1";
                   try {
                     yield Vp(e, u, t);
                   } catch (e) {
-                    const t = `Error saving level: ${e.message}`;
+                    const t = `Error saving level: ${e.message} Try deleting older levels, or use the "ERASE RUN HISTORY" button in "MORE"`;
                     console.error(e);
                     (Ql(t), i.ok(t));
                   }
@@ -55285,6 +55296,7 @@ var version = "v1.11.1";
                             justDestroyed: true,
                             playerRot: 0,
                             sfx: false,
+                            playerScale: 1,
                           },
                           (t) => {
                             const a = e.bossState;
@@ -60398,6 +60410,7 @@ var version = "v1.11.1";
                                     bottomColour: "#FCDA45",
                                   }, // for now, hehehe...
                             playerRot: e.playerRot,
+                            playerScale: e.playerScale,
                             df: e.df,
                           },
                           (t) => {
@@ -60788,6 +60801,7 @@ var version = "v1.11.1";
                     trail: e.playerSkin.trail,
                     playerRot: e.playerRot,
                     df: e.df,
+                    playerScale: e.playerScale,
                   }),
                   update: (t) => {
                     ((t.paused = e.paused), (t.df = e.df));
