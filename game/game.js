@@ -53944,7 +53944,7 @@ var version = "v1.11.1";
                   try {
                     yield Vp(e, u, t);
                   } catch (e) {
-                    const t = `Error saving level: ${e.message}`;
+                    const t = `Error saving level: ${e.message} Try deleting older levels, or use the "ERASE RUN HISTORY" button in "MORE"`;
                     console.error(e);
                     (Ql(t), i.ok(t));
                   }
