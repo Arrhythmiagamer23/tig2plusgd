@@ -21059,8 +21059,8 @@ var version = "v1.12.0";
                             e.inGame && e.inGame.playerDir,
                           )),
                           (a.rotation = i.rotation),
-                          (a.width = i.width * t),
-                          (a.height = i.height * t));
+                          (a.width = i.width * (41 / 30)),
+                          (a.height = i.height * (41 / 30)));
                       },
                       array: () => e.spikes,
                       testId: (t, a) => {
