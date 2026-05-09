@@ -17912,6 +17912,13 @@ var version = "v1.12.0";
               author: "GatoNegro",
               trail: ct({ topColour: "#9f1960", bottomColour: "#691d96" }),
             },
+            mikhael: {
+              name: "GD Default",
+              fileName: "gdcube",
+              size: 30,
+              author: "RoadHogStudios",
+              trail: ct({ topColour: "#7dff00", bottomColour: "#7dff00" }),
+            },
             blank: {
               name: "Blank",
               fileName: "blank",
